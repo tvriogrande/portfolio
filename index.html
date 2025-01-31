@@ -57,14 +57,14 @@
         /* Botão chamativo */
         .button {
             display: inline-block;
-            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            background: #ff0000; /* Vermelho */
             padding: 12px 25px;
             border-radius: 30px;
             font-size: 18px;
             font-weight: bold;
             text-decoration: none;
-            color: #ffffff;
-            box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.5);
+            color: #ffffff; /* Texto branco */
+            box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5); /* Sombra vermelha */
             transition: transform 0.3s, box-shadow 0.3s;
             margin-top: 20px;
             animation: pulse 2s infinite;
@@ -72,7 +72,7 @@
 
         .button:hover {
             transform: scale(1.05);
-            box-shadow: 0px 0px 20px rgba(255, 0, 255, 0.7);
+            box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.7); /* Sombra vermelha mais intensa */
         }
 
         @keyframes pulse {
@@ -235,7 +235,7 @@
 
         .scratch-text {
             font-size: 24px;
-            color: #fff;
+            color: #00e426; /* Vermelho */
             text-align: center;
             margin-top: 20px;
             display: none;
@@ -276,15 +276,25 @@
             from { transform: translate(-50%, -50%) scale(0); }
             to { transform: translate(-50%, -50%) scale(1); }
         }
+
+        /* Centralizar o botão */
+        .center-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Centraliza verticalmente */
+        }
     </style>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- Botão principal -->
-    <button class="button" onclick="showContent()">Quero derrubar a concorrência!</button>
+    <!-- Botão principal centralizado -->
+    <div class="center-button">
+        <button class="button" onclick="showContent()">Quero derrubar a concorrência!</button>
+    </div>
 
-    <!-- Mensagem animada -->
+    <!-- Mensagem animada (não desfocada) -->
     <div id="message" class="message" style="display: none;">Você está no lugar certo!</div>
 
     <!-- Conteúdo principal (inicialmente escondido) -->
@@ -292,7 +302,7 @@
         <h1 class="highlight">
             <img draggable="false" role="img" class="icon" alt="🔥" src="https://s.w.org/images/core/emoji/15.0.3/svg/1f525.svg"> Prepare-se para uma oportunidade única!
         </h1>
-        <p class="typewriter">Sua marca será impulsionada pela <strong>TV Rio Grande</strong>, a maior referência em imprensa e marketing da região. Nosso alcance é incomparável, e os resultados falam por si.</p>
+        <p class="typewriter">Sua marca será impulsionada</p>
 
         <!-- Gráfico de Visualizações -->
         <div class="chart-container">
@@ -443,7 +453,7 @@
             // Desfocar o fundo
             document.body.classList.add('blur');
 
-            // Exibir mensagem animada
+            // Exibir mensagem animada (não desfocada)
             const message = document.getElementById('message');
             message.style.display = 'block';
 
@@ -452,6 +462,9 @@
                 message.style.display = 'none';
                 document.body.classList.remove('blur');
                 document.getElementById('mainContent').style.display = 'block';
+
+                // Ocultar o botão "Quero derrubar a concorrência!"
+                document.querySelector('.center-button').style.display = 'none';
             }, 3000);
         }
 
